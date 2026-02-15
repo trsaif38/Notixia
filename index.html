@@ -19,7 +19,7 @@
       overflow: hidden;
       font-family: 'Inter', sans-serif;
       background-color: #fafaf9;
-      user-select: none; /* Prevents text selection like native app */
+      user-select: none;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -27,7 +27,6 @@
       font-family: 'Caveat', cursive;
     }
 
-    /* Custom scrollbar */
     ::-webkit-scrollbar {
       width: 4px;
     }
@@ -39,7 +38,6 @@
       border-radius: 10px;
     }
 
-    /* Prevent elastic scrolling in iOS */
     html, body {
       position: fixed;
       width: 100%;
@@ -49,15 +47,19 @@
 <script type="importmap">
 {
   "imports": {
-    "lucide-react": "https://esm.sh/lucide-react@^0.564.0",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+    "lucide-react": "https://esm.sh/lucide-react@0.564.0?external=react",
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/"
   }
 }
 </script>
 </head>
 <body>
   <div id="root"></div>
+  <!-- Explicitly loading the entry point -->
+  <script type="module" src="./index.tsx"></script>
 </body>
 </html>

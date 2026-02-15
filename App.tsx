@@ -38,11 +38,17 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const fetchState = async () => {
-      const saved = await loadState();
-      if (saved) {
-        setAppState({ ...saved, isFakeSession: false });
+      try {
+        const saved = await loadState();
+        if (saved) {
+          setAppState(prev => ({ ...saved, isFakeSession: false }));
+        }
+      } catch (error) {
+        console.error("Critical error loading database state:", error);
+      } finally {
+        // Always set loaded to true so the app renders even if DB fails
+        setIsLoaded(true);
       }
-      setIsLoaded(true);
     };
     fetchState();
   }, []);
@@ -50,7 +56,7 @@ const App: React.FC = () => {
   useEffect(() => {
     if (isLoaded) {
       const { isFakeSession, ...stateToSave } = appState;
-      saveState(stateToSave as AppState);
+      saveState(stateToSave as AppState).catch(err => console.error("Failed to save state:", err));
     }
   }, [appState, isLoaded]);
 
@@ -141,10 +147,10 @@ const App: React.FC = () => {
 
   if (!isLoaded) {
     return (
-      <div className="h-screen w-full bg-indigo-600 flex items-center justify-center">
+      <div className="h-screen w-full bg-indigo-600 flex flex-col items-center justify-center">
         <div className="flex flex-col items-center animate-pulse">
-          <span className="text-white font-black text-4xl italic tracking-tighter mb-4">Notixia</span>
-          <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+          <span className="text-white font-black text-5xl italic tracking-tighter mb-6">Notixia</span>
+          <div className="w-10 h-10 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
         </div>
       </div>
     );
