@@ -1,0 +1,8 @@
+{
+  "name": "Notixia",
+  "description": "A minimalist notebook app with a secret private vault for photos, videos, audio, and documents.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

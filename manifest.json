@@ -1,0 +1,18 @@
+
+{
+  "name": "Notixia",
+  "short_name": "Notixia",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fafaf9",
+  "theme_color": "#4f46e5",
+  "description": "Minimalist Secret Notebook & Vault",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3596/3596080.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
